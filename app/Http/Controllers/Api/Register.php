@@ -12,9 +12,9 @@ use App\Models\User;
 class Register extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth')->except(['index', 'show']);
-    }
+    // public function __construct(){
+    //     $this->middleware('auth')->except(['index', 'show']);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -50,7 +50,13 @@ class Register extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $user = User::create($request->all());
+        // $user = User::create($request->all());
+
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')),
+        ]);
 
         return response($user, 200);
     }

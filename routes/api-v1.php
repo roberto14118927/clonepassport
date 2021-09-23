@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Importación de controladores
 use App\Http\Controllers\Api\Register;
-
+use App\Http\Controllers\Api\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,5 +16,7 @@ use App\Http\Controllers\Api\Register;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('login', [LoginController::class, 'store']);
 
 Route::post('register', [Register::class, 'store'])->name('api.v1.register');
